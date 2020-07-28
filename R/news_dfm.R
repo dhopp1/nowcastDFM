@@ -1,3 +1,5 @@
+#' @importFrom pracma inv
+
 news_dfm <- function(data_old, data_new, output_dfm, target_variable, target_period) {
   ###  This function calculates changes in news by using a given DFM results  structure.
   ###   It inputs two datasets, DFM parameters, target time index, and target variable index.

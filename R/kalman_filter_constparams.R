@@ -1,3 +1,5 @@
+#' @importFrom pracma inv
+
 kalman_filter_constparams <- function(data, params, lag) {
   
   
