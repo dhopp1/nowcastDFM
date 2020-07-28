@@ -3,7 +3,9 @@ Title: DFMs for Nowcasting
 Version: 0.0.0.9000
 Authors@R: person("Daniel", "Hopp", email = "daniel.hopp1@gmail.com", role = c("aut", "cre"))
 Description: Run DFM models in R 
-Depends: R (>= 3.6.1)
+Depends: 
+	R (>= 3.6.1),
+	tidyverse (>= 1.2.1)
 License: GPL-3
 Encoding: UTF-8
 LazyData: true

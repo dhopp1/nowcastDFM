@@ -1,4 +1,4 @@
-#' @import tidyverse
+#' @export
 test <- function(x) {
 	x %>% print
 }
