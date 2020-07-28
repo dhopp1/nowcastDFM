@@ -3,4 +3,5 @@
 export(dfm)
 export(gen_news)
 export(predict_dfm)
+importFrom(pracma,cubicspline)
 importFrom(signal,filter)
