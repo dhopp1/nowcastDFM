@@ -1,7 +1,10 @@
 Package: nowcastDFM
 Title: DFMs for Nowcasting
 Version: 0.0.0.9000
-Authors@R: person("Daniel", "Hopp", email = "daniel.hopp1@gmail.com", role = c("aut", "cre"))
+Authors@R: c(
+	person("Daniel", "Hopp", email = "daniel.hopp@un.org", role = c("aut", "cre")),
+	person("Fernando", "Cantu", email = "fernando.cantu@un.org", role = c("aut"))
+	)
 Description: Run DFM models in R 
 Depends: 
 	R (>= 3.6.1),
