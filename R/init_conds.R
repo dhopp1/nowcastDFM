@@ -1,4 +1,4 @@
-#' @importFrom pracma inv
+#' @importFrom pracma inv kron
 
 init_conds <- function(X, p, blocks, R_mat, q, nM, nQ, index_freq) {
   ###
