@@ -1,0 +1,10 @@
+Package: nowcastDFM
+Title: DFMs for Nowcasting
+Version: 0.0.0.9000
+Authors@R: person("Daniel", "Hopp", email = "daniel.hopp1@gmail.com", role = c("aut", "cre"))
+Description: Run DFM models in R 
+Depends: R (>= 3.6.1)
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.1.1
