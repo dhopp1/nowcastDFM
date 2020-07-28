@@ -28,8 +28,6 @@
 #' \item{LL}{sequence of log likelihoods per iteration.}
 #' \item{data}{data passed to the model.}
 #' 
-#' @import matlab
-#' 
 #' @export
 
 dfm <- function(data, blocks, p, max_iter=5000, threshold=1e-5) {

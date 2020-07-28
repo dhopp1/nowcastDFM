@@ -8,7 +8,8 @@ Authors@R: c(
 Description: Run DFM models in R 
 Depends: 
 	R (>= 3.6.1),
-	tidyverse (>= 1.2.1)
+	tidyverse (>= 1.2.1),
+	matlab (>= 1.0.2)
 License: GPL-3
 Encoding: UTF-8
 LazyData: true

@@ -1,5 +1,3 @@
-#' @import matlab
-
 kalman_filter_constparams <- function(data, params, lag) {
   
   

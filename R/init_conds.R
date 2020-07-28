@@ -1,5 +1,3 @@
-#' @import matlab
-
 init_conds <- function(X, p, blocks, R_mat, q, nM, nQ, index_freq) {
   ###
   ### This function creates initial parameter estimates. These are initial inputs in the EM algorithm, 

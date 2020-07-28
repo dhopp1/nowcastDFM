@@ -3,6 +3,5 @@
 export(dfm)
 export(gen_news)
 export(predict_dfm)
-import(matlab)
 importFrom(pracma,cubicspline)
 importFrom(signal,filter)

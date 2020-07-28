@@ -1,5 +1,3 @@
-#' @import matlab
-
 EM_step <- function(y, A, C, Q, R, Z0, V0, p, blocks, R_mat, q, nM, nQ, index_freq) {
   
   ###  This function reestimates parameters based on the Estimation Maximization (EM)
