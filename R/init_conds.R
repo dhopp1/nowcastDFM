@@ -1,4 +1,4 @@
-#' @importFrom pracma inv kron
+#' @importFrom pracma inv kron blkdiag
 
 init_conds <- function(X, p, blocks, R_mat, q, nM, nQ, index_freq) {
   ###

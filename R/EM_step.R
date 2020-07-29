@@ -1,4 +1,4 @@
-#' @importFrom pracma inv kron
+#' @importFrom pracma inv kron blkdiag
 
 EM_step <- function(y, A, C, Q, R, Z0, V0, p, blocks, R_mat, q, nM, nQ, index_freq) {
   

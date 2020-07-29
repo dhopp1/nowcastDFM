@@ -3,6 +3,7 @@
 export(dfm)
 export(gen_news)
 export(predict_dfm)
+importFrom(pracma,blkdiag)
 importFrom(pracma,cubicspline)
 importFrom(pracma,inv)
 importFrom(pracma,kron)
