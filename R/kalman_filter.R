@@ -1,4 +1,4 @@
-#' @importFrom pracma inv
+#' @importFrom pracma inv pinv
 
 kalman_filter <- function(y, A, C, Q, R, Z0, V0) {
   
