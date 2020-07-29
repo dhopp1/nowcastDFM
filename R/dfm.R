@@ -1,7 +1,7 @@
 #' @title Estimating a dynamic factor model using the EM method.
-#' @description Runs a DFM for the nowcast model on the transformed data at a certain data vintage. It uses an implementation through the EM algorithm. It relies on several functions to determine initial values, calculate the KF, the sequence of steps of the EM algorithm and criteria to determine convergence.
+#' @description Runs a DFM for the nowcast model on the transformed data at a certain data vintage. It uses an implementation through the EM algorithm. It relies on several functions to determine initial values, calculate the nowcaKF, the sequence of steps of the EM algorithm and criteria to determine convergence.
 #' @param data matrix of variables, size (n_obs, n_variables). Must include in 1st column a series of type date, called "date", all data already stationary.
-#' @param blocks Dataframe, size (n_variables, n_blocks). Note don't include date column in n_variables. Matrix of 1s or 0s for block loadings, i.e. 1 = included in block.
+#' @param blocks Dataframe, size (n_variables, n_blocks). Note don't include date column in n_variables. Matrix of 1s or 0s for block loadings, i.e. 1 = included in block. Default is one global block containing all variables.
 #' @param p number of lags in transition equation (AR element)
 #' @param max_iter maximum number of iterations for EM (if no convergence)
 #' @param threshold threshold for convergence of EM loop
@@ -30,9 +30,14 @@
 #' 
 #' @export
 
-dfm <- function(data, blocks, p, max_iter=5000, threshold=1e-5) {
-  ### Sort variables, first monthly variables, then quarterly variables
+dfm <- function(data, blocks=NA, p=1, max_iter=5000, threshold=1e-5) {
+  # Sort variables, first monthly variables, then quarterly variables
   orig_data <- data
+  
+  # default one global block
+  if (is.na(blocks)) {
+    blocks <- matlab::ones(ncol(data)-1, 1)  
+  }
   
   is_quarterly <- function(dates, series) {
     tmp <- data.frame(dates, series) %>% 
