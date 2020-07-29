@@ -1,3 +1,5 @@
+#' @importFrom pracma eps
+
 EM_convergence <- function(loglik, prev_loglik, threshold) {
   
   ###
