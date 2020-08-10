@@ -169,6 +169,25 @@ dfm <- function(data, blocks=NA, p=1, max_iter=5000, threshold=1e-5) {
 #' @export
 
 predict_dfm <- function(data, output_dfm, months_ahead=3, lag=0) {
+  # move quarterly variables to the end
+  is_quarterly <- function(dates, series) {
+    tmp <- data.frame(dates, series) %>% 
+      dplyr::filter(!is.na(series)) %>% 
+      select(dates) %>% pull
+    if (identical((sapply(tmp, function(x) substr(x, 6, 7)) %>% unique %>% sort), c("03", "06", "09", "12"))) {
+      return (TRUE)
+    } else {
+      return (FALSE)
+    }
+  }
+  quarterly <- c(FALSE)
+  for (i in 2:ncol(data)) {
+    quarterly <- append(quarterly, is_quarterly(data[,1], data[,i]))
+  }
+  monthlies <- data[,which(quarterly == FALSE)]
+  quarterlies <- data[,which(quarterly == TRUE)]
+  data <- cbind(monthlies, quarterlies)
+  
   # add months
   add_month <- function (X) {
     month <- as.numeric(substr(X, 6, 7))
@@ -184,25 +203,6 @@ predict_dfm <- function(data, output_dfm, months_ahead=3, lag=0) {
     output[nrow(output) + 1, "date"] <- add_month(output[nrow(output), "date"])
   }
   dates <- output[,"date"]
-  
-  # move quarterly variables to the end
-  is_quarterly <- function(dates, series) {
-    tmp <- data.frame(dates, series) %>% 
-      dplyr::filter(!is.na(series)) %>% 
-      select(dates) %>% pull
-    if (identical((sapply(tmp, function(x) substr(x, 6, 7)) %>% unique %>% sort), c("03", "06", "09", "12"))) {
-      return (TRUE)
-    } else {
-      return (FALSE)
-    }
-  }
-  quarterly <- c(FALSE)
-  for (i in 2:ncol(output)) {
-    quarterly <- append(quarterly, is_quarterly(data[,1], data[,i]))
-  }
-  monthlies <- output[,which(quarterly == FALSE)]
-  quarterlies <- output[,which(quarterly == TRUE)]
-  output <- cbind(monthlies, quarterlies)
   
   output <- output[,2:ncol(output)]
   
