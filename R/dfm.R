@@ -169,6 +169,7 @@ dfm <- function(data, blocks=NA, p=1, max_iter=5000, threshold=1e-5) {
 #' @export
 
 predict_dfm <- function(data, output_dfm, months_ahead=3, lag=0) {
+  orig_order <- colnames(data)
   # move quarterly variables to the end
   is_quarterly <- function(dates, series) {
     tmp <- data.frame(dates, series) %>% 
@@ -184,8 +185,10 @@ predict_dfm <- function(data, output_dfm, months_ahead=3, lag=0) {
   for (i in 2:ncol(data)) {
     quarterly <- append(quarterly, is_quarterly(data[,1], data[,i]))
   }
-  monthlies <- data[,which(quarterly == FALSE)]
-  quarterlies <- data[,which(quarterly == TRUE)]
+  monthlies <- data.frame(data[,which(quarterly == FALSE)])
+  colnames(monthlies) <- colnames(data)[quarterly==FALSE]
+  quarterlies <- data.frame(data[,which(quarterly == TRUE)])
+  colnames(quarterlies) <- colnames(data)[quarterly]
   data <- cbind(monthlies, quarterlies)
   
   # add months
@@ -213,5 +216,5 @@ predict_dfm <- function(data, output_dfm, months_ahead=3, lag=0) {
   preds <- preds[,c(ncol(preds), 1:(ncol(preds)-1))]
   colnames(preds) <- colnames(data)
   
-  return (preds)
+  return (preds[,orig_order])
 }
