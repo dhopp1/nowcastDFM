@@ -35,7 +35,7 @@ dfm <- function(data, blocks=NA, p=1, max_iter=5000, threshold=1e-5) {
   orig_data <- data
   
   # default one global block
-  if (is.na(blocks)) {
+  if (is.na(blocks)[1]) {
     blocks <- matlab::ones(ncol(data)-1, 1)  
   }
   
