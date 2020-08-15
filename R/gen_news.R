@@ -73,6 +73,7 @@ gen_news <- function(old_y, new_y, output_dfm, target_variable, target_period) {
   }
   
   # drop date column
+  dates <- data_new$date
   data_old <- data_old[,2:ncol(data_old)] 
   data_new <- data_new[,2:ncol(data_new)]
   i_series <- which(colnames(data_new) == target_variable)
@@ -82,17 +83,17 @@ gen_news <- function(old_y, new_y, output_dfm, target_variable, target_period) {
   # Relate nowcast update into news from data releases:
   #   a. Compute the impact from data revisions
   #   b. Compute the impact from new data releases
-  data_rev <- new_y
-  data_rev[is.na(old_y)] <- NA
+  data_rev <- cbind(data.frame(date=dates), data_new)
+  data_rev[is.na(cbind(data.frame(date=dates), data_old))] <- NA
   
   # Compute news --------------------------------------------------------
   
   # Compute impact from data revisions
-  results_old <- news_dfm(old_y, data_rev, output_dfm, target_variable, target_period)
+  results_old <- news_dfm(cbind(data.frame(date=dates), data_old), data_rev, output_dfm, target_variable, target_period)
   y_old <- results_old$y_old
   
   # Compute impact from data releases
-  results_new <- news_dfm(data_rev, new_y, output_dfm, target_variable, target_period)
+  results_new <- news_dfm(data_rev, cbind(data.frame(date=dates), data_new), output_dfm, target_variable, target_period)
   y_rev <- results_new$y_old; y_new <- results_new$y_new
   actual <- results_new$actual; forecast <- results_new$fore; weight <- results_new$weight
   
