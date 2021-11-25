@@ -1,4 +1,5 @@
 #' @title Estimating a dynamic factor model using the EM method.
+#' @name dfm
 #' @description Runs a DFM for the nowcast model on the transformed data at a certain data vintage. It uses an implementation through the EM algorithm. It relies on several functions to determine initial values, calculate the nowcaKF, the sequence of steps of the EM algorithm and criteria to determine convergence.
 #' @param data matrix of variables, size (n_obs, n_variables). Must include in 1st column a series of type date, called "date", all data already stationary.
 #' @param blocks Dataframe, size (n_variables, n_blocks). Note don't include date column in n_variables. Matrix of 1s or 0s for block loadings, i.e. 1 = included in block. Default is one global block containing all variables.
@@ -159,6 +160,7 @@ dfm <- function(data, blocks=NA, p=1, max_iter=5000, threshold=1e-5) {
 
 
 #' @title Predictions from an estimated dynamic factor model.
+#' @name predict_dfm
 #' @description runs a dataset through a previously estimated DFM to obtain predictions for all missing values in the series.
 #' @param data matrix of variables, size (n_obs, n_variables). Must include in 1st column a series of type date, called "date", all data already stationary.
 #' @param output_dfm list, the output of the \code{dfm()} function.
@@ -218,3 +220,5 @@ predict_dfm <- function(data, output_dfm, months_ahead=3, lag=0) {
   
   return (preds[,orig_order])
 }
+
+utils::globalVariables(c(".", "beginning", "ending",  "na_row", "row_num", "row_num_inv")) # defining global variables to suppress dplyr note from devtools::check()

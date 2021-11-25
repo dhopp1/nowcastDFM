@@ -1,4 +1,5 @@
 #' @title Viewing the impact of new data on a nowcast.
+#' @name gen_news
 #' @description given and old and new dataset, will calculate the impact data releases and revisions have on the estimate of a target variable.
 #' @param old_y dataframe of variables, size (n_obs, n_variables). Must include in 1st column a series of type date, called "date", all data already stationary.
 #' @param new_y dataframe of variables, size (n_obs, n_variables). Must include in 1st column a series of type date, called "date", all data already stationary. Must contain same columns as old_y.
