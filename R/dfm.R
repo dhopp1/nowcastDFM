@@ -1,6 +1,6 @@
 #' @title Estimating a dynamic factor model using the EM method.
 #' @name dfm
-#' @description Runs a DFM for the nowcast model on the transformed data at a certain data vintage. It uses an implementation through the EM algorithm. It relies on several functions to determine initial values, calculate the nowcaKF, the sequence of steps of the EM algorithm and criteria to determine convergence.
+#' @description Runs a DFM for the nowcast model on the transformed data at a certain data vintage. Your data may not be able to be estimated on due to issues with invertible matrices, etc. If you get errors like "non-invertible" or "not a matrix", try reordering the columns in your dataframe, or adding or removing variables from it. It uses an implementation through the EM algorithm. It relies on several functions to determine initial values, calculate the nowcaKF, the sequence of steps of the EM algorithm and criteria to determine convergence.
 #' @param data matrix of variables, size (n_obs, n_variables). Must include in 1st column a series of type date, called "date", all data already stationary.
 #' @param blocks Dataframe, size (n_variables, n_blocks). Note don't include date column in n_variables. Matrix of 1s or 0s for block loadings, i.e. 1 = included in block. Default is one global block containing all variables.
 #' @param p number of lags in transition equation (AR element)
