@@ -41,5 +41,5 @@ A \code{list} containing the following elements:
 \item{data}{data passed to the model.}
 }
 \description{
-Runs a DFM for the nowcast model on the transformed data at a certain data vintage. It uses an implementation through the EM algorithm. It relies on several functions to determine initial values, calculate the nowcaKF, the sequence of steps of the EM algorithm and criteria to determine convergence.
+Runs a DFM for the nowcast model on the transformed data at a certain data vintage. Your data may not be able to be estimated on due to issues with invertible matrices, etc. If you get errors like "non-invertible" or "not a matrix", try reordering the columns in your dataframe, or adding or removing variables from it. It uses an implementation through the EM algorithm. It relies on several functions to determine initial values, calculate the nowcaKF, the sequence of steps of the EM algorithm and criteria to determine convergence.
 }
