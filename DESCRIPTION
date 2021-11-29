@@ -5,7 +5,7 @@ Authors@R: c(
 	person("Daniel", "Hopp", email = "daniel.hopp@un.org", role = c("aut", "cre")),
 	person("Fernando", "Cantu", email = "fernando.cantu@un.org", role = c("aut"))
 	)
-Description: Run dynamic factor models (DFM) in R. Adapted from Bok et al. 2017. The package provides the ability to estimate a DFM model, obtain predictions from estimated models, and obtain the impact of new data releases on model predictions.
+Description: Run dynamic factor models (DFM) in R. Adapted from Bok et al. (2017) <https:https://www.newyorkfed.org/medialibrary/media/research/staff_reports/sr830.pdf>. The package provides the ability to estimate a DFM model, obtain predictions from estimated models, and obtain the impact of new data releases on model predictions.
 Depends: 
 	R (>= 3.3.0),
 	dplyr (>= 0.8.0.1),

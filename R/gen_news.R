@@ -100,7 +100,7 @@ gen_news <- function(old_y, new_y, output_dfm, target_variable, target_period) {
   
   # Display output
   if (sum(is.na(forecast)) == length(forecast)) {
-    print("No forecast was made")
+    message("No forecast was made")
     news_table <- NULL
     impact_revisions <- 0
     impact_releases <- 0
@@ -113,17 +113,17 @@ gen_news <- function(old_y, new_y, output_dfm, target_variable, target_period) {
     news_table[,"New Data"] <- as.numeric(as.logical(colSums(is.na(data_old) & !is.na(data_new))))
     impact_total <- impact_revisions + colSums(impact_releases, na.rm = T)
     
-    print("Nowcast Impact Decomposition")
-    print(paste("old nowcast: ", y_old * 100, "%", sep = ""))
-    print(paste("new nowcast: ", y_new * 100, "%", sep = ""))
-    print(paste("Impact from data revisions: ", sprintf("%.2f", impact_revisions * 100), "%", sep = ""))
-    print(paste("Impact from data releases: ", 
+    message("Nowcast Impact Decomposition")
+    message(paste("old nowcast: ", y_old * 100, "%", sep = ""))
+    message(paste("new nowcast: ", y_new * 100, "%", sep = ""))
+    message(paste("Impact from data revisions: ", sprintf("%.2f", impact_revisions * 100), "%", sep = ""))
+    message(paste("Impact from data releases: ", 
                 sprintf("%.2f", sum(news_table[, "Impact"] * 100, na.rm = TRUE)), "%", sep = ""))
-    print(paste("Total impact: ", 
+    message(paste("Total impact: ", 
                 sprintf("%.2f", (impact_revisions + sum(news_table[, "Impact"], na.rm = TRUE)) * 100),
                 "%", sep = ""))
-    print("Nowcast Detail Table")
-    print(news_table[, c("Forecast", "Actual", "Weight", "Impact")])
+    message("Nowcast Detail Table")
+    message(news_table[, c("Forecast", "Actual", "Weight", "Impact")])
   }
   
   return(list(target_period = target_period, target_variable = target_variable, y_old = y_old, y_new = y_new, forecast = forecast, actual = actual, weight = weight,
