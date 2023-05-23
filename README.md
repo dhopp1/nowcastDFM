@@ -3,7 +3,14 @@
 Run dynamic factor models (DFM) in R. Adapted from [Bok et al. 2017](https://www.newyorkfed.org/medialibrary/media/research/staff_reports/sr830.pdf), [MATLAB code](https://github.com/FRBNY-TimeSeriesAnalysis/Nowcasting). The package provides the ability to estimate a DFM model using the expectation–maximization method, obtain predictions from estimated models, and obtain the impact of new data releases on model predictions. On [CRAN](https://cloud.r-project.org/web/packages/nowcastDFM/index.html).
 
 # Installation
-`install.packages("nowcastDFM")`
+```R
+install.packages("nowcastDFM")`
+```
+If this does not work, you can install directly from Github with: 
+```R
+install.packages("devtools")
+devtools::install_github("dhopp1/nowcastDFM")
+```
 
 # Functionality
 - `dfm`: estimate a dynamic factor model using the EM method. `?dfm` for more info.
